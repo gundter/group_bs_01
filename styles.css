@@ -40,3 +40,8 @@
 	margin: 5px 20px;
 }
 
+.appendPlatform {
+	height: 180px;
+	overflow: auto;
+}
+

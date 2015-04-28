@@ -38,10 +38,10 @@ function displayContent(results) {
 				} else {
 					var description = "No Info Available";
 				}
-		$(".content").hide().append("<div class='col-md-4 bg-primary results group" + results[j].id + "'><img class='hidden-sm hidden-xs' src='" + results[j].image.medium_url +"'/><br><button class='btn-default btn-sm minify'>Remove Item</button><button class='btn-success btn-sm showInfo'>Show Info</button></div>");
-		$(".group"+results[j].id).append("<div class='appendPlatform'><p class='lead'>" + results[j].name + "</p><p>" + description +"</p><p>Platform: " + results[j].platforms[0].name + "</p><button class='btn-sm btn-warning removeInfo'>Remove Info</button></div>");
+		$(".content").hide().append("<div class='col-md-4 bg-info results group" + results[j].id + "'><img class='hidden-sm hidden-xs' src='" + results[j].image.medium_url +"'/><br><button class='btn-default btn-sm minify'>Remove Item</button><button class='btn-success btn-sm showInfo'>Show Info</button></div>");
+		$(".group"+results[j].id).append("<div class='appendPlatform'><p class='lead'>" + results[j].name + "</p><p>" + description +"</p><p>Platform: " + results[j].platforms[0].name + "</p><a href='" + results[j].site_detail_url + "'>More info...</a></div><button class='btn-sm btn-warning removeInfo'>Remove Info</button>");
 		$(".content").fadeIn("slow");
-		$(".results").css({height: '600px'});
+		$(".results").css({height: '500px'});
 	}
 }
 
