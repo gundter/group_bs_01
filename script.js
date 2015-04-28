@@ -76,7 +76,8 @@ $(document).ready(function() {
 
 	$(".content").on("click", ".removeInfo", function(){
 		console.log("Remove Info");
-		$(this).parent().fadeOut();
+		$(this).fadeOut();
+		$(this).siblings(".appendPlatform").fadeOut();
 		//$(this).parent().css({height: 'auto'});
 	});
 
