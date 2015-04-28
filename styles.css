@@ -1,0 +1,42 @@
+.results img {
+	border-radius: 15px;
+	height: 250px;
+	width: 250px;
+}
+
+.results {
+	border: 1px solid #000000;
+	border-radius: 10px;
+	margin: 10px 0 10px 0;
+	text-align: center;
+}
+
+.hidden {
+	display: none;
+}
+
+.returnContent {
+	display: block;
+	float: right;
+}
+
+.mindblow {
+	display: block;
+	margin: 15px auto;
+}
+
+.header h1 {
+	text-align: center;
+}
+
+.logo {
+	height: 200px;
+	width: 75%;
+	display: block;
+	margin: 5px auto;
+}
+
+.searchBtn {
+	margin: 5px 20px;
+}
+
