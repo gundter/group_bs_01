@@ -49,12 +49,7 @@
 	display: block;
 }
 
-.buttonContainer div{
-	height: 100px;
-	width: auto;
-	/*display: inline-block;*/
-	float: left;
-}
+
 
 .left-button {
 	height: 75px;
@@ -81,4 +76,9 @@
 	background-color: #DDDDDD;
 	color: #000000;
 	border-radius: 50%;
+}
+
+.buttonContainer {
+	height: 100px;
+	margin: 10px auto;
 }
