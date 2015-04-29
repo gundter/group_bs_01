@@ -45,3 +45,40 @@
 	overflow: auto;
 }
 
+.gameContent {
+	display: block;
+}
+
+.buttonContainer div{
+	height: 100px;
+	width: auto;
+	/*display: inline-block;*/
+	float: left;
+}
+
+.left-button {
+	height: 75px;
+	width: 75px;
+	margin: 15px;
+	background-color: #DDDDDD;
+	color: #000000;
+	border-radius: 50%;
+}
+
+.right-button {
+	height: 75px;
+	width: 75px;
+	margin: 15px;
+	background-color: #DDDDDD;
+	color: #000000;
+	border-radius: 50%;
+}
+
+.circles {
+	height: 35px;
+	width: 35px;
+	margin: 5px;
+	background-color: #DDDDDD;
+	color: #000000;
+	border-radius: 50%;
+}

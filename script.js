@@ -2,6 +2,9 @@ var apikey = '10d0a85137d94904c75e456dcdf91468227c09ca'; // Put your API key her
 var j;
 var k;
 var i;
+var count;
+var gameArray = [];
+
 
 // HELPER FUNCTION
 // Executes a search using 'query' and runs searchCallback on the results of a success.
@@ -27,23 +30,43 @@ function search(query){
 // It is called after 'search' is executed.
 function searchCallback(results) {
     console.log(results);
-    displayContent(results);
+    gameArray = results.slice(0);
+    displayContent(gameArray, 0);
+    buttonCreater();
 }
 
-function displayContent(results) {
+function buttonCreater(){
+	$(".buttonContainer").append("<div class='btn left-button'>Left</div>");
+	for(j = 0; j < 8; j++){
+		$(".buttonContainer").append("<div class='circle" + j +" circles'>" + j + "</div>");
+	}
+	$(".buttonContainer").append("<div class='btn right-button'>Right</div>");
+}
+
+function displayContent(results, count) {
 	$(".content").empty();
-	for (j = 0; j < results.length; j++){
-		if (results[j].deck != null) {
-					var description = results[j].deck;
+
+		for(var k = 0; k < results[count].platforms.length; k++){
+			var platforms = '';
+			platforms += results[count].platforms[k].name + "<br>";
+		}
+
+		var image = results[count].image.medium_url;
+		var name = results[count].name;
+		var gameLink = results[count].site_detail_url;
+		var gameId = results[count].id;
+		
+		if (results[count].deck != null) {
+					var description = results[count].deck;
 				} else {
 					var description = "No Info Available";
 				}
-		$(".content").hide().append("<div class='col-md-4 bg-info results group" + results[j].id + "'><img class='hidden-sm hidden-xs' src='" + results[j].image.medium_url +"'/><br><button class='btn-default btn-sm minify'>Remove Item</button><button class='btn-success btn-sm showInfo'>Show Info</button></div>");
-		$(".group"+results[j].id).append("<div class='appendPlatform'><p class='lead'>" + results[j].name + "</p><p>" + description +"</p><p>Platform: " + results[j].platforms[0].name + "</p><a href='" + results[j].site_detail_url + "'>More info...</a></div><button class='btn-sm btn-warning removeInfo'>Remove Info</button>");
+		$(".content").hide().append("<div class='col-md-8 well bg-info results group" + gameId + "'><img class='hidden-sm hidden-xs' src='" + image +"'/><br><button class='btn-default btn-sm minify'>Remove Item</button><button class='btn-success btn-sm showInfo'>Show Info</button></div>");
+		$(".group"+gameId).append("<div class='appendPlatform'><p class='lead'>" + name + "</p><p>" + description +"</p><p>Platform: " + platforms + "</p><a href='" + gameLink + "'>More info...</a><div class='buttonContainer row'></div></div><button class='btn-sm btn-warning removeInfo'>Remove Info</button>");
 		$(".content").fadeIn("slow");
-		$(".results").css({height: '500px'});
-	}
+		$(".results").css({height: '700px'});
 }
+
 
 
 $(document).ready(function() {
