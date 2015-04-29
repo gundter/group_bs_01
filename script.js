@@ -37,11 +37,11 @@ function searchCallback(results) {
 }
 
 function buttonCreater(){
-	$(".buttonContainer").append("<div class='row'><div class='left-button col-md-2'>Left</div>");
+	$(".buttonContainer").append("<div class='left-button col-md-2'>Left</div>");
 	for(j = 0; j < 8; j++){
 		$(".buttonContainer").append("<div class='deselected circle" + j +" circles col-md-1'>" + j + "</div>");
 	}
-	$(".buttonContainer").append("<div class='right-button col-md-2'>Right</div></div>");
+	$(".buttonContainer").append("<div class='right-button col-md-2'>Right</div>");
 }
 
 function displayContent(results, count) {
@@ -72,7 +72,7 @@ function displayContent(results, count) {
 		$(".circle"+count).addClass(".selected");
 
 		$(".content").fadeIn("slow");
-		$(".results").css({height: '700px'});
+		$(".results").css({height: '550px'});
 		buttonCreater();
 }
 
@@ -118,9 +118,13 @@ $(document).ready(function() {
 		console.log(count);
 		if (count < 0){
 			count = 7;
+			$(".circle" + (count) ).removeClass(".selected");
+			$(".circle" + (count) ).addClass(".deselected");
+		} else {
+			$(".circle" + (count+1) ).removeClass(".selected");
+			$(".circle" + (count+1) ).addClass(".deselected");
+			console.log( $(".circle" + (count+1) ) );
 		}
-		$(".circle" + (count+1) ).removeClass(".selected");
-		$(".circle" + (count+1) ).addClass(".deselected");
 		displayContent(gameArray, count);
 	});
 

@@ -79,6 +79,15 @@
 }
 
 .buttonContainer {
+	vertical-align: center;
 	height: 100px;
-	margin: 10px auto;
+	margin-left: 25%;
+}
+
+.selected {
+	background-color: #000000;
+}
+
+.deselected {
+	background-color: #DDDDDD;
 }
