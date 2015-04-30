@@ -26,8 +26,6 @@ function search(query){
 
 }
 
-// Use this function to do stuff with your results. 
-// It is called after 'search' is executed.
 function searchCallback(results) {
     console.log(results);
     gameArray = results.slice(0);
@@ -36,12 +34,12 @@ function searchCallback(results) {
     
 }
 
-function buttonCreater(){
-	$(".buttonContainer").append("<div class='left-button col-md-2'>Left</div>");
+function buttonCreater(gameArray){
+	$(".buttonContainer").append("<div class='left-button col-md-2'><span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span></div>");
 	for(j = 0; j < 8; j++){
-		$(".buttonContainer").append("<div class='deselected circle" + j +" circles col-md-1'>" + j + "</div>");
+		$(".buttonContainer").append("<div class='circles col-md-1'><img class='img-circle thumb thumbs"+j+" text-center deselected' src='" + gameArray[j].image.thumb_url + "'/></div>");
 	}
-	$(".buttonContainer").append("<div class='right-button col-md-2'>Right</div>");
+	$(".buttonContainer").append("<div class='right-button col-md-2'><span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span></div>");
 }
 
 function displayContent(results, count) {
@@ -64,18 +62,21 @@ function displayContent(results, count) {
 				} else {
 					var description = "No Info Available";
 				}
-		$(".content").hide().append("<div class='col-md-12 well bg-info results group" + gameId + "'><img class='hidden-sm hidden-xs' src='" + image +"'/><br><button class='btn-default btn-sm minify'>Remove Item</button><button class='btn-success btn-sm showInfo'>Show Info</button></div>");
-		$(".group"+gameId).append("<div class='appendPlatform'><p class='lead'>" + name + "</p><p>" + description +"</p><p>Platform: " + consoles + "</p><a href='" + gameLink + "'>More info...</a></div><button class='btn-sm btn-warning removeInfo'>Remove Info</button>");
-		$(".footer").append("<div class='buttonContainer'></div>");
+		$(".content").hide().append("<div class='col-md-12 well bg-info results group" + gameId + "'><img class='hidden-sm hidden-xs' src='" + image +"'/><br><button class='btn-success btn-sm showInfo'>Show Info</button></div>");
 
-		$(".circle"+count).removeClass(".deselected");
-		$(".circle"+count).addClass(".selected");
+		$(".group"+gameId).append("<div class='appendPlatform'><p class='lead'>" + name + "</p><p>" + description +"</p><p>Platform: " + consoles + "</p><a href='" + gameLink + "'>More info...</a><br><button class='btn-sm btn-warning removeInfo'>Remove Info</button></div>");
+		$(".footer").append("<div class='buttonContainer text-center container'></div>");
 
+		buttonCreater(gameArray);
+
+		$(".thumbs"+count).removeClass("deselected");
+		$(".thumbs"+count).addClass("selected");
+
+		$(".appendPlatform").hide();
 		$(".content").fadeIn("slow");
 		$(".results").css({height: '550px'});
-		buttonCreater();
+		
 }
-
 
 
 $(document).ready(function() {
@@ -89,52 +90,32 @@ $(document).ready(function() {
 
 	$(".content").on("click", ".minify", function (){
 		$(this).parent().fadeOut("slow");
-		//$(this).parent().toggleClass("hidden");
-	});
-
-	$(".header").append("<button class='btn-warning btn-lg returnContent'>Return Content to screen</button>");
-
-	$(".header").on("click", ".returnContent", function(){
-		$(".results").css({height: '600px'});
-		$(".results").fadeIn("slow");
-		$(".results").children().children().fadeIn("fast");
 	});
 
 	$(".content").on("click", ".showInfo", function(){
 		console.log("Show Info");
-		$(this).siblings().fadeIn();
-		//$(this).siblings(".appendPlatform").css({height: '600px'});
+		$(this).siblings().slideDown();
 	});
 
 	$(".content").on("click", ".removeInfo", function(){
 		console.log("Remove Info");
-		$(this).fadeOut();
-		$(this).siblings(".appendPlatform").fadeOut();
-		//$(this).parent().css({height: 'auto'});
+		$(this).parent(".appendPlatform").slideUp();
 	});
 
-	$(".footer").on("click", ".left-button", function() {
+	$(".footer").on("click", ".left-button", function(e) {
+		e.preventDefault();
 		count--;
 		console.log(count);
 		if (count < 0){
-			count = 7;
-			$(".circle" + (count) ).removeClass(".selected");
-			$(".circle" + (count) ).addClass(".deselected");
-		} else {
-			$(".circle" + (count+1) ).removeClass(".selected");
-			$(".circle" + (count+1) ).addClass(".deselected");
-			console.log( $(".circle" + (count+1) ) );
-		}
+			count = 7;}
 		displayContent(gameArray, count);
 	});
 
-	$(".footer").on("click", ".right-button", function() {
+	$(".footer").on("click", ".right-button", function() {		
 		count++;
 		if (count > 7){
 			count = 0;
 		}
-		$(".circle" + (count-1) ).removeClass(".selected");
-		$(".circle" + (count-1) ).addClass(".deselected");
 		displayContent(gameArray, count);
 	});
 
